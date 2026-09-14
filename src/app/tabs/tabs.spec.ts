@@ -42,15 +42,20 @@ describe("TabsComponent", () =>{
         expect(button.nativeElement.classList).toContain("active");
     })
 
-    it("should emit activateTab when a tab is clicked", () => {
+    it("should emit activeTab when a tab is clicked", () => {
         const button = de.query(By.css(".tab-link:last-child"));
         button.nativeElement.click();
         fixture.detectChanges();
-        expect(button.activeTab()).toBe("advanced")
+        expect(component.activeTab()).toBe("advanced");
     })
 
     it("should emit tabChanged when a tab is clicked", () => {
-
+        const emitSpy = vi.spyOn(component.tabChanged, "emit");
+        const button = de.query(By.css(".tab-link:last-child"));
+        button.nativeElement.click();
+        fixture.detectChanges();
+        expect(emitSpy).toHaveBeenCalledWith("advanced");
+        expect(emitSpy).toHaveBeenCalledOnce();
     })
 
 })
