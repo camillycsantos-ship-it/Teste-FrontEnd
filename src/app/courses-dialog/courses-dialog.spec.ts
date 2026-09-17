@@ -22,10 +22,9 @@ describe('CoursesDialog', async () => {
         }
     mockDialogRef = {
         close: vi.fn()
-    }
-})
+        }
 
-    await TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
         imports: [CoursesDialog],
         providers:[
             {provide: CoursesService, useValue: mockCoursesService},
@@ -38,6 +37,7 @@ describe('CoursesDialog', async () => {
         de = fixture.debugElement;
         component = fixture.componentInstance;
         fixture.detectChanges();
+    })
 
     it('should initialize the form with course data', () =>{
         expect(component.courseForm.description().value()).toBe("Beginner Course");
